@@ -35,7 +35,7 @@
   };
 
   let getHistogramColor = function () {
-    let saturation = window.getRandomInt(0, 100);
+    let saturation = window.util.getRandomInt(0, 100);
     return `hsl(240, ` + saturation + `%, 50%)`;
   };
 
