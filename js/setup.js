@@ -9,7 +9,7 @@
 
   let onPopupEscPress = function (evt) {
     if (document.activeElement !== inputUserName) {
-      window.util.isEscEvent(evt, closePopup);
+      window.util.onEscPress(evt, closePopup);
     }
   };
 
@@ -33,7 +33,7 @@
   });
 
   setupOpen.addEventListener(`keydown`, function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.onEnterPress(evt, openPopup);
   });
 
   setupClose.addEventListener(`click`, function () {
@@ -41,7 +41,7 @@
   });
 
   setupClose.addEventListener(`keydown`, function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.onEnterPress(evt, closePopup);
   });
 
 })();

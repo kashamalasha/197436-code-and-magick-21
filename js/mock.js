@@ -57,9 +57,9 @@
     ]).join(` `);
   };
 
-  let generateWizards = function (qty) {
+  let generateWizards = function (quantity) {
     let arr = [];
-    for (let i = 0; i < qty; i++) {
+    for (let i = 0; i < quantity; i++) {
       arr.push({
         name: getRandomName(),
         coatColor: window.util.getRandomFromArray(COAT_COLORS),

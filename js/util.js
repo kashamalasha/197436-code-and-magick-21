@@ -12,14 +12,14 @@
     }
   };
 
-  let isEscEvent = function (evt, action) {
+  let onEscPress = function (evt, action) {
     if (evt.keyCode === Key.ESCAPE.keyCode) {
       evt.preventDefault();
       action();
     }
   };
 
-  let isEnterEvent = function (evt, action) {
+  let onEnterPress = function (evt, action) {
     if (evt.keyCode === Key.ENTER.keyCode) {
       action();
     }
@@ -43,8 +43,8 @@
   };
 
   window.util = {
-    isEscEvent,
-    isEnterEvent,
+    onEscPress,
+    onEnterPress,
     getRandomInt,
     getRandomFromArray,
     getShuffledArray
