@@ -34,14 +34,8 @@
     RESULTS_TITLE: `Список результатов:`
   };
 
-  let getRandomInt = function (min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   let getHistogramColor = function () {
-    let saturation = getRandomInt(0, 100);
+    let saturation = window.util.getRandomInt(0, 100);
     return `hsl(240, ` + saturation + `%, 50%)`;
   };
 
