@@ -44,4 +44,10 @@
     window.util.onEnterPress(evt, closePopup);
   });
 
+  window.validate.formInput(inputUserName);
+
+  window.color.colorize(window.wizard.wizardElements.coat, window.wizard.COAT_COLORS);
+  window.color.colorize(window.wizard.wizardElements.eyes, window.wizard.EYE_COLORS);
+  window.color.colorize(window.wizard.wizardElements.fireball, window.wizard.FIREBALL_COLORS);
+
 })();
