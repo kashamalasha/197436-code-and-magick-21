@@ -76,9 +76,7 @@
   };
 
   window.color = {
-    colorize,
-    getCurrentColor,
-    Color
+    colorize
   };
 
 })();

@@ -97,7 +97,6 @@
   similarElement.classList.remove(`hidden`);
 
   window.wizard = {
-    SIMILAR_WIZARD_QUANTITY,
     COAT_COLORS,
     EYE_COLORS,
     FIREBALL_COLORS,
