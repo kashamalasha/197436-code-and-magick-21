@@ -6,6 +6,8 @@
   let setupOpen = document.querySelector(`.setup-open`);
   let setupClose = setupDialog.querySelector(`.setup-close`);
   let inputUserName = setupDialog.querySelector(`.setup-user-name`);
+  let setupForm = setupDialog.querySelector(`.setup-wizard-form`);
+
 
   let onPopupEscPress = function (evt) {
     if (document.activeElement !== inputUserName) {
@@ -28,6 +30,11 @@
     document.removeEventListener(`keydown`, onPopupEscPress);
   };
 
+  let onSetupFormSubmit = function (evt) {
+    window.backend.save(new FormData(setupForm), closePopup);
+    evt.preventDefault();
+  };
+
   setupOpen.addEventListener(`click`, function () {
     openPopup();
   });
@@ -44,10 +51,8 @@
     window.util.onEnterPress(evt, closePopup);
   });
 
-  window.validate.formInput(inputUserName);
-
-  window.color.colorize(window.wizard.wizardElements.coat, window.wizard.COAT_COLORS);
-  window.color.colorize(window.wizard.wizardElements.eyes, window.wizard.EYE_COLORS);
-  window.color.colorize(window.wizard.wizardElements.fireball, window.wizard.FIREBALL_COLORS);
+  setupForm.addEventListener(`submit`, function (evt) {
+    onSetupFormSubmit(evt);
+  });
 
 })();
