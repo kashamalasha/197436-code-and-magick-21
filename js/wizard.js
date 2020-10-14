@@ -55,18 +55,6 @@
   let similarElement = document.querySelector(`.setup-similar`);
   let similarListElement = document.querySelector(`.setup-similar-list`);
 
-  let generateWizards = function (quantity) {
-    let arr = [];
-    for (let i = 0; i < quantity; i++) {
-      arr.push({
-        name: window.mock.getRandomName(),
-        coatColor: window.util.getRandomFromArray(COAT_COLORS),
-        eyeColor: window.util.getRandomFromArray(EYE_COLORS)
-      });
-    }
-    return arr;
-  };
-
   let renderWizard = function (proto) {
     let wizard = WIZARD_TEMPLATE.cloneNode(true);
     let wizardName = wizard.querySelector(`.setup-similar-label`);
@@ -74,8 +62,8 @@
     let wizardEyes = wizard.querySelector(`.wizard-eyes`);
 
     wizardName.textContent = proto.name;
-    wizardCoat.style.fill = proto.coatColor;
-    wizardEyes.style.fill = proto.eyeColor;
+    wizardCoat.style.fill = proto.colorCoat;
+    wizardEyes.style.fill = proto.colorEyes;
 
     return wizard;
   };
@@ -90,13 +78,56 @@
     return fragment;
   };
 
-  let playersArray = generateWizards(SIMILAR_WIZARD_QUANTITY);
-  similarListElement.appendChild(renderWizards(playersArray));
-  similarElement.appendChild(similarListElement);
+  let getRank = function (wizard) {
+    let coatColor = wizardElements.coat.input.value;
+    let eyesColor = wizardElements.eyes.input.value;
+    let rank = 0;
 
-  similarElement.classList.remove(`hidden`);
+    if (wizard.colorCoat === coatColor) {
+      rank += 2;
+    }
+
+    if (wizard.colorEyes === eyesColor) {
+      rank += 1;
+    }
+
+    return rank;
+  };
+
+  let namesComparator = function (left, right) {
+    if (left > right) {
+      return 1;
+    } else if (left < right) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
+  let updateWizards = function (arr) {
+    let unsortedWizards = arr;
+
+    let sortedWizards = unsortedWizards.slice().sort(function (left, right) {
+      let rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesComparator(left.name, right.name);
+      }
+      return rankDiff;
+    });
+
+    let similarWizards = sortedWizards.slice(0, SIMILAR_WIZARD_QUANTITY);
+
+    if (similarListElement.childElementCount > 0) {
+      similarListElement.innerHTML = ``;
+    }
+
+    similarListElement.appendChild(renderWizards(similarWizards));
+    similarElement.appendChild(similarListElement);
+    similarElement.classList.remove(`hidden`);
+  };
 
   window.wizard = {
+    updateWizards,
     COAT_COLORS,
     EYE_COLORS,
     FIREBALL_COLORS,
