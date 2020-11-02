@@ -106,7 +106,7 @@
     }
   };
 
-  const updateWizards = function () {
+  const updateWizards = window.util.debounce(function () {
     let unsortedWizards = window.wizard.receivedWizards;
 
     let sortedWizards = unsortedWizards.slice().sort(function (left, right) {
@@ -126,7 +126,7 @@
     similarListElement.appendChild(renderWizards(similarWizards));
     similarElement.appendChild(similarListElement);
     similarElement.classList.remove(`hidden`);
-  };
+  });
 
   window.wizard = {
     updateWizards,

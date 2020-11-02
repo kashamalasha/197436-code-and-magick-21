@@ -23,8 +23,7 @@
       }
       obj.input.value = newColor;
 
-      let updateSimilarWizards = window.util.debounce(window.wizard.updateWizards);
-      updateSimilarWizards();
+      window.wizard.updateWizards();
     });
   };
 
