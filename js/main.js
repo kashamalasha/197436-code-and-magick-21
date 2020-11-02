@@ -5,7 +5,7 @@
   let setupDialog = document.querySelector(`.setup`);
   let inputUserName = setupDialog.querySelector(`.setup-user-name`);
 
-  let onError = function (errorMessage) {
+  const onError = function (errorMessage) {
     let node = document.createElement(`div`);
     node.style = `z-index: 100; margin: 0 auto; text-align: center; background-color: red;`;
     node.style.position = `absolute`;
@@ -17,8 +17,9 @@
     document.body.insertAdjacentElement(`afterbegin`, node);
   };
 
-  let onSuccess = function (arr) {
-    window.wizard.updateWizards(arr);
+  const onSuccess = function (arr) {
+    window.wizard.receivedWizards = arr;
+    window.wizard.updateWizards();
   };
 
   window.backend.load(onSuccess, onError);

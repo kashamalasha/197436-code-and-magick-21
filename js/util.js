@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  const DEBOUNCE_INTERVAL = 500;
+
   const Key = {
     ENTER: {
       keyCode: 13,
@@ -12,34 +14,47 @@
     }
   };
 
-  let onEscPress = function (evt, action) {
+  const onEscPress = function (evt, action) {
     if (evt.keyCode === Key.ESCAPE.keyCode) {
       evt.preventDefault();
       action();
     }
   };
 
-  let onEnterPress = function (evt, action) {
+  const onEnterPress = function (evt, action) {
     if (evt.keyCode === Key.ENTER.keyCode) {
       action();
     }
   };
 
-  let getRandomInt = function (min, max) {
+  const getRandomInt = function (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  let getRandomFromArray = function (arr) {
+  const getRandomFromArray = function (arr) {
     return arr[getRandomInt(0, arr.length - 1)];
   };
 
-  let getShuffledArray = function (arr) {
+  const getShuffledArray = function (arr) {
     let randomComparator = function () {
       return 0.5 - Math.random();
     };
     return arr.slice().sort(randomComparator);
+  };
+
+  const debounce = function (callback, ...args) {
+    let lastTimeout = null;
+
+    return function () {
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+      }
+      lastTimeout = window.setTimeout(function () {
+        callback(...args);
+      }, DEBOUNCE_INTERVAL);
+    };
   };
 
   window.util = {
@@ -47,7 +62,8 @@
     onEnterPress,
     getRandomInt,
     getRandomFromArray,
-    getShuffledArray
+    getShuffledArray,
+    debounce
   };
 
 })();

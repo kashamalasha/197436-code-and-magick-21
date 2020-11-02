@@ -34,12 +34,12 @@
     RESULTS_TITLE: `Список результатов:`
   };
 
-  let getHistogramColor = function () {
+  const getHistogramColor = function () {
     let saturation = window.util.getRandomInt(0, 100);
     return `hsl(240, ` + saturation + `%, 50%)`;
   };
 
-  let getMaxElement = function (arr) {
+  const getMaxElement = function (arr) {
     let max = arr[0];
     for (let i = 1; i < arr.length; i++) {
       if (max < arr[i]) {
@@ -49,16 +49,16 @@
     return max;
   };
 
-  let getPlayerColor = function (name) {
+  const getPlayerColor = function (name) {
     return (name === `Вы`) ? COLOR.RED : getHistogramColor();
   };
 
-  let renderCloud = function (ctx, x, y, color) {
+  const renderCloud = function (ctx, x, y, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, CLOUD.W, CLOUD.H);
   };
 
-  let renderScore = function (ctx, x, name, time, maxTime) {
+  const renderScore = function (ctx, x, name, time, maxTime) {
     let playerScore;
     let playerPosY;
     let histogramPosY = TEXT.LINE_HEIGHT * 5;

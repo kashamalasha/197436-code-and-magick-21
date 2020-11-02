@@ -37,6 +37,8 @@
   let setupWizard = setupPlayer.querySelector(`.setup-wizard`);
   let wizardElement = setupWizard.querySelector(`.wizard`);
 
+  let receivedWizards = [];
+
   let wizardElements = {
     coat: {
       element: wizardElement.querySelector(`.wizard-coat`),
@@ -55,7 +57,7 @@
   let similarElement = document.querySelector(`.setup-similar`);
   let similarListElement = document.querySelector(`.setup-similar-list`);
 
-  let renderWizard = function (proto) {
+  const renderWizard = function (proto) {
     let wizard = WIZARD_TEMPLATE.cloneNode(true);
     let wizardName = wizard.querySelector(`.setup-similar-label`);
     let wizardCoat = wizard.querySelector(`.wizard-coat`);
@@ -68,7 +70,7 @@
     return wizard;
   };
 
-  let renderWizards = function (arr) {
+  const renderWizards = function (arr) {
     let fragment = document.createDocumentFragment();
 
     for (let i = 0; i < arr.length; i++) {
@@ -78,7 +80,7 @@
     return fragment;
   };
 
-  let getRank = function (wizard) {
+  const getRank = function (wizard) {
     let coatColor = wizardElements.coat.input.value;
     let eyesColor = wizardElements.eyes.input.value;
     let rank = 0;
@@ -94,7 +96,7 @@
     return rank;
   };
 
-  let namesComparator = function (left, right) {
+  const namesComparator = function (left, right) {
     if (left > right) {
       return 1;
     } else if (left < right) {
@@ -104,8 +106,8 @@
     }
   };
 
-  let updateWizards = function (arr) {
-    let unsortedWizards = arr;
+  const updateWizards = window.util.debounce(function () {
+    let unsortedWizards = window.wizard.receivedWizards;
 
     let sortedWizards = unsortedWizards.slice().sort(function (left, right) {
       let rankDiff = getRank(right) - getRank(left);
@@ -124,14 +126,15 @@
     similarListElement.appendChild(renderWizards(similarWizards));
     similarElement.appendChild(similarListElement);
     similarElement.classList.remove(`hidden`);
-  };
+  });
 
   window.wizard = {
     updateWizards,
     COAT_COLORS,
     EYE_COLORS,
     FIREBALL_COLORS,
-    wizardElements
+    wizardElements,
+    receivedWizards
   };
 
 })();

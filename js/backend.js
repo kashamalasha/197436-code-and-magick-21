@@ -13,7 +13,7 @@
     OK: 200
   };
 
-  let createRequest = function (method, url, onLoad, onError) {
+  const createRequest = function (method, url, onLoad, onError) {
     let xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
 
@@ -42,12 +42,12 @@
     return xhr;
   };
 
-  let load = function (onLoad, onError) {
+  const load = function (onLoad, onError) {
     let xhr = createRequest(`GET`, Url.LOAD, onLoad, onError);
     xhr.send();
   };
 
-  let save = function (data, onLoad, onError) {
+  const save = function (data, onLoad, onError) {
     let xhr = createRequest(`POST`, Url.SAVE, onLoad, onError);
     xhr.send(data);
   };
