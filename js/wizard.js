@@ -37,6 +37,8 @@
   let setupWizard = setupPlayer.querySelector(`.setup-wizard`);
   let wizardElement = setupWizard.querySelector(`.wizard`);
 
+  let receivedWizards = [];
+
   let wizardElements = {
     coat: {
       element: wizardElement.querySelector(`.wizard-coat`),
@@ -104,8 +106,8 @@
     }
   };
 
-  const updateWizards = function (arr) {
-    let unsortedWizards = arr;
+  const updateWizards = function () {
+    let unsortedWizards = window.wizard.receivedWizards;
 
     let sortedWizards = unsortedWizards.slice().sort(function (left, right) {
       let rankDiff = getRank(right) - getRank(left);
@@ -131,7 +133,8 @@
     COAT_COLORS,
     EYE_COLORS,
     FIREBALL_COLORS,
-    wizardElements
+    wizardElements,
+    receivedWizards
   };
 
 })();

@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  const DEBOUNCE_INTERVAL = 500;
+
   const Key = {
     ENTER: {
       keyCode: 13,
@@ -42,12 +44,26 @@
     return arr.slice().sort(randomComparator);
   };
 
+  const debounce = function (callback, ...args) {
+    let lastTimeout = null;
+
+    return function () {
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+      }
+      lastTimeout = window.setTimeout(function () {
+        callback(...args);
+      }, DEBOUNCE_INTERVAL);
+    };
+  };
+
   window.util = {
     onEscPress,
     onEnterPress,
     getRandomInt,
     getRandomFromArray,
-    getShuffledArray
+    getShuffledArray,
+    debounce
   };
 
 })();

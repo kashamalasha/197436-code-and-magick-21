@@ -18,7 +18,8 @@
   };
 
   const onSuccess = function (arr) {
-    window.wizard.updateWizards(arr);
+    window.wizard.receivedWizards = arr;
+    window.wizard.updateWizards();
   };
 
   window.backend.load(onSuccess, onError);

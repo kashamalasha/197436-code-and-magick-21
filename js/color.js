@@ -22,6 +22,9 @@
         obj.element.style.fill = newColor;
       }
       obj.input.value = newColor;
+
+      let updateSimilarWizards = window.util.debounce(window.wizard.updateWizards);
+      updateSimilarWizards();
     });
   };
 
