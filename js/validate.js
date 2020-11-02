@@ -2,7 +2,7 @@
 
 (function () {
 
-  let formInput = function (input) {
+  const formInput = function (input) {
     input.addEventListener(`invalid`, function () {
       if (input.validity.tooShort) {
         input.setCustomValidity(`Имя должно состоять минимум из 2-х символов`);

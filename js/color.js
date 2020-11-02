@@ -2,7 +2,7 @@
 
 (function () {
 
-  let setNewColor = function (obj, colors) {
+  const setNewColor = function (obj, colors) {
     let newColor = window.util.getRandomFromArray(colors);
     let currentColor = obj.input.value;
 
@@ -13,7 +13,7 @@
     return newColor;
   };
 
-  let colorize = function (obj, colors) {
+  const colorize = function (obj, colors) {
     obj.element.addEventListener(`click`, function () {
       let newColor = setNewColor(obj, colors);
       if (obj.element.tagName.toLowerCase() === `div`) {

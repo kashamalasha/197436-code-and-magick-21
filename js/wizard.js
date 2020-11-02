@@ -55,7 +55,7 @@
   let similarElement = document.querySelector(`.setup-similar`);
   let similarListElement = document.querySelector(`.setup-similar-list`);
 
-  let renderWizard = function (proto) {
+  const renderWizard = function (proto) {
     let wizard = WIZARD_TEMPLATE.cloneNode(true);
     let wizardName = wizard.querySelector(`.setup-similar-label`);
     let wizardCoat = wizard.querySelector(`.wizard-coat`);
@@ -68,7 +68,7 @@
     return wizard;
   };
 
-  let renderWizards = function (arr) {
+  const renderWizards = function (arr) {
     let fragment = document.createDocumentFragment();
 
     for (let i = 0; i < arr.length; i++) {
@@ -78,7 +78,7 @@
     return fragment;
   };
 
-  let getRank = function (wizard) {
+  const getRank = function (wizard) {
     let coatColor = wizardElements.coat.input.value;
     let eyesColor = wizardElements.eyes.input.value;
     let rank = 0;
@@ -94,7 +94,7 @@
     return rank;
   };
 
-  let namesComparator = function (left, right) {
+  const namesComparator = function (left, right) {
     if (left > right) {
       return 1;
     } else if (left < right) {
@@ -104,7 +104,7 @@
     }
   };
 
-  let updateWizards = function (arr) {
+  const updateWizards = function (arr) {
     let unsortedWizards = arr;
 
     let sortedWizards = unsortedWizards.slice().sort(function (left, right) {

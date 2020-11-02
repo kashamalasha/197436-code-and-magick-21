@@ -15,7 +15,7 @@
 
     let isDragged = false;
 
-    let onMouseMove = function (moveEvt) {
+    const onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
 
       isDragged = true;
@@ -34,7 +34,7 @@
       setupDialog.style.left = (setupDialog.offsetLeft - shift.x) + `px`;
     };
 
-    let onMouseUp = function (upEvt) {
+    const onMouseUp = function (upEvt) {
       upEvt.preventDefault();
 
       document.removeEventListener(`mousemove`, onMouseMove);

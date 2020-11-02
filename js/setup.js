@@ -9,13 +9,13 @@
   let setupForm = setupDialog.querySelector(`.setup-wizard-form`);
 
 
-  let onPopupEscPress = function (evt) {
+  const onPopupEscPress = function (evt) {
     if (document.activeElement !== inputUserName) {
       window.util.onEscPress(evt, closePopup);
     }
   };
 
-  let openPopup = function () {
+  const openPopup = function () {
     setupDialog.classList.remove(`hidden`);
 
     setupDialog.style.left = ``;
@@ -24,13 +24,13 @@
     document.addEventListener(`keydown`, onPopupEscPress);
   };
 
-  let closePopup = function () {
+  const closePopup = function () {
     setupDialog.classList.add(`hidden`);
 
     document.removeEventListener(`keydown`, onPopupEscPress);
   };
 
-  let onSetupFormSubmit = function (evt) {
+  const onSetupFormSubmit = function (evt) {
     window.backend.save(new FormData(setupForm), closePopup);
     evt.preventDefault();
   };
